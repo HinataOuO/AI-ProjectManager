@@ -26,7 +26,15 @@ Two modes:
 
 ## Install And Update
 
-Use Git as the package source. In a target project, run:
+Fast install without cloning this repository first:
+
+```bash
+curl -fsSL <raw-script-url> | node - install <git-url> --version v2.0.0
+```
+
+Use the raw URL for `scripts/ai-project.mjs` as `<raw-script-url>`, and the package repository URL as `<git-url>`. The script downloads the package into `.ai-project/runtime/`, seeds local project state, and writes `.ai-project.lock.json`.
+
+If the repository is already cloned locally, run:
 
 ```bash
 node /path/to/AI-ProjectStarter/scripts/ai-project.mjs install <git-url-or-local-path> --version v2.0.0
