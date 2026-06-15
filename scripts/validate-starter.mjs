@@ -28,6 +28,7 @@ const hardcodeScanRoots = [
   "CHECKS.md",
   "MIGRATION.md",
   "README.md",
+  "SKILL_README.md",
   "starter.json",
 ];
 

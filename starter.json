@@ -40,6 +40,7 @@
   "requiredFiles": [
     "starter.json",
     "README.md",
+    "SKILL_README.md",
     "MIGRATION.md",
     "CHECKS.md",
     "scripts/ai-project.mjs",

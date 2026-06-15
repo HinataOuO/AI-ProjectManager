@@ -1,61 +1,31 @@
 # AI Project Starter
 
-Portable prompt, skill, command, roadmap, memory, and issue-template starter for Codex + Claude.
+Portable starter for Codex and Claude project agents: shared core rules, task skills, commands, project memory templates, roadmap templates, and GitHub issue templates.
 
-Two modes:
-- Template source: `AI-ProjectStarter/`. Maintained here, validated here, not loaded during normal runtime.
-- Installed package: `.ai-project/runtime/`. Agents load update-safe files from here.
-- Local state: `.ai-project/local/`. Project memory, overlays, and roadmap live here and are not overwritten by package updates.
+Detailed maintainer and runtime notes live in `SKILL_README.md`.
 
-## Goals
-- Keep internal prompts in English.
-- Respond to users in Italian by default.
-- Load context lazily: kernel -> project index -> skill -> tagged memory/roadmap shard.
-- Keep files small and deduplicated.
-- Preserve tool safety: explicit confirmation before writes that close roadmap work or push git history.
+## Install
 
-## Layout
-- `core/`: shared rules loaded by all agents.
-- `adapters/`: Codex and Claude entrypoints generated from shared rules.
-- `starter.json`: manifest for skills, commands, required files, tags, and roadmap layers.
-- `skills/`: portable task skills. Installed under `.ai-project/runtime/skills/`.
-- `commands/claude/`: slash-command wrappers. Installed under `.ai-project/runtime/commands/claude/`.
-- `project/`: local project index, memory shards, and roadmap templates. Seeded to `.ai-project/local/project/`.
-- `github/ISSUE_TEMPLATE/`: GitHub issue templates.
-- `overlays/example/`: placeholder overlay shape only. Real overlays are seeded under `.ai-project/local/project/overlays/`.
-
-## Install And Update
-
-Fast install into the current repository without cloning this repository first:
+Fast install into the current repository:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/HinataOuO/AI-ProjectManager/main/scripts/ai-project.mjs | node - install-here
 ```
 
-The script installs into the current working directory, downloads the package into `.ai-project/runtime/`, seeds local project state, and writes `.ai-project.lock.json`.
-
-If the repository is already cloned locally, run:
+Install from a local clone:
 
 ```bash
 node /path/to/AI-ProjectStarter/scripts/ai-project.mjs install <git-url-or-local-path> --version v2.0.0
 ```
 
-Installer behavior:
-- copies package files into `.ai-project/runtime/`
-- seeds `.ai-project/local/project/` only when missing
-- writes `.ai-project.lock.json`
-- syncs root `AGENTS.md`, root `CLAUDE.md`, `.agents/skills/`, and `.claude/commands/`
-
-After install:
+Commit installed files:
 
 ```bash
 git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/local
 git commit -m "chore: install AI project manager"
 ```
 
-Commit `.ai-project/local/` because it contains project memory, overlays, and roadmap state. Do not edit `.ai-project/runtime/` by hand; it is package-managed.
-
-Update the package:
+## Update
 
 ```bash
 node .ai-project/runtime/scripts/ai-project.mjs update-here
@@ -64,42 +34,36 @@ git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/ru
 git commit -m "chore: update AI project manager"
 ```
 
-Check installed state:
+## Status
 
 ```bash
 node .ai-project/runtime/scripts/ai-project.mjs status-here
 ```
 
-Regenerate discovery copies after manual cleanup or adapter changes:
+## Sync Discovery
 
 ```bash
 node .ai-project/runtime/scripts/ai-project.mjs sync-discovery
 ```
 
-If `update` reports runtime drift, someone edited `.ai-project/runtime/` locally. Move useful changes into `.ai-project/local/` or the source repo, then rerun `update`; use `--force` only to discard local runtime edits.
-
-Do not add real project overlays to `AI-ProjectStarter/`. Keep project names, paths, aliases, DB quirks, domain facts, and private conventions in `.ai-project/local/project/`.
-
-## Runtime Loading
-Runtime agents load:
-- `.ai-project/runtime/core/`
-- `.ai-project/local/project/PROJECT_INDEX.md`
-- matching `.ai-project/runtime/skills/<name>/SKILL.md`
-- tagged memory/roadmap shards only when required
-
-Runtime agents must not load `README.md`, `MIGRATION.md`, or `CHECKS.md` unless maintaining or validating the starter itself.
-
 ## Validate
+
+From this repository:
+
+```bash
+bash scripts/validate-starter.sh
+```
+
+From a parent directory:
 
 ```bash
 bash AI-ProjectStarter/scripts/validate-starter.sh
 ```
 
 ## Token Check
-Validator `word_count` uses same file set as:
 
 ```bash
-find AI-ProjectStarter/core AI-ProjectStarter/skills AI-ProjectStarter/commands/claude AI-ProjectStarter/project/memory AI-ProjectStarter/github/ISSUE_TEMPLATE \
+find core skills commands/claude project/memory github/ISSUE_TEMPLATE \
   -type f \( -name '*.md' -o -name '*.yml' -o -name '*.yaml' \) -print0 |
   xargs -0 wc -w
 ```
