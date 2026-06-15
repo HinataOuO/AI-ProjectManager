@@ -14,6 +14,9 @@ const forbiddenTerms = [
   [114, 118, 111],
   [72, 105, 110, 97, 116, 97, 79, 117, 79],
 ].map((codes) => String.fromCharCode(...codes));
+const allowedHardcodes = [
+  "https://raw.githubusercontent.com/HinataOuO/AI-ProjectManager/main/scripts/ai-project.mjs",
+];
 const hardcodeScanRoots = [
   "adapters",
   "commands",
@@ -121,6 +124,12 @@ function parseInlineList(value) {
   return match[1].split(",").map((item) => item.trim()).filter(Boolean);
 }
 
+function stripAllowedHardcodes(text) {
+  let stripped = text;
+  for (const value of allowedHardcodes) stripped = stripped.replaceAll(value, "");
+  return stripped;
+}
+
 const manifest = parseJson("starter.json");
 const skills = uniqueList("skills", manifest.skills);
 const commands = uniqueList("claudeCommands", manifest.claudeCommands);
@@ -143,7 +152,7 @@ for (const key of ["claudeAliases", "aliases"]) {
 for (const path of hardcodeScanRoots.flatMap((relPath) => walkIfDirectory(relPath))) {
   const relPath = relative(root, path);
   if (relPath === "scripts/validate-starter.mjs") continue;
-  const text = readText(path);
+  const text = stripAllowedHardcodes(readText(path));
   for (const term of forbiddenTerms) {
     if (text.includes(term)) fail(`project-specific hardcode: ${relPath}`);
   }

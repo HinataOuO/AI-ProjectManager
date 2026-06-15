@@ -26,13 +26,13 @@ Two modes:
 
 ## Install And Update
 
-Fast install without cloning this repository first:
+Fast install into the current repository without cloning this repository first:
 
 ```bash
-curl -fsSL <raw-script-url> | node - install <git-url> --version v2.0.0
+curl -fsSL https://raw.githubusercontent.com/HinataOuO/AI-ProjectManager/main/scripts/ai-project.mjs | node - install-here
 ```
 
-Use the raw URL for `scripts/ai-project.mjs` as `<raw-script-url>`, and the package repository URL as `<git-url>`. The script downloads the package into `.ai-project/runtime/`, seeds local project state, and writes `.ai-project.lock.json`.
+The script installs into the current working directory, downloads the package into `.ai-project/runtime/`, seeds local project state, and writes `.ai-project.lock.json`.
 
 If the repository is already cloned locally, run:
 
@@ -58,7 +58,7 @@ Commit `.ai-project/local/` because it contains project memory, overlays, and ro
 Update the package:
 
 ```bash
-node .ai-project/runtime/scripts/ai-project.mjs update
+node .ai-project/runtime/scripts/ai-project.mjs update-here
 git diff
 git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/runtime
 git commit -m "chore: update AI project manager"
@@ -67,7 +67,7 @@ git commit -m "chore: update AI project manager"
 Check installed state:
 
 ```bash
-node .ai-project/runtime/scripts/ai-project.mjs status
+node .ai-project/runtime/scripts/ai-project.mjs status-here
 ```
 
 Regenerate discovery copies after manual cleanup or adapter changes:

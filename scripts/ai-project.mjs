@@ -19,6 +19,7 @@ import { spawnSync } from "node:child_process";
 const LOCK_FILE = ".ai-project.lock.json";
 const RUNTIME_ROOT = ".ai-project/runtime";
 const LOCAL_ROOT = ".ai-project/local";
+const DEFAULT_SOURCE_URL = "https://github.com/HinataOuO/AI-ProjectManager.git";
 const PACKAGE_EXCLUDES = new Set([
   ".git",
   ".ai-project",
@@ -34,8 +35,11 @@ const command = args.shift();
 function usage() {
   console.log(`Usage:
   ai-project install <git-url-or-local-path> [--version <ref>] [--project <path>] [--force]
+  ai-project install-here [--source <git-url-or-local-path>] [--version <ref>] [--force]
   ai-project update [--version <ref>] [--project <path>] [--force]
+  ai-project update-here [--version <ref>] [--force]
   ai-project status [--project <path>]
+  ai-project status-here
   ai-project sync-discovery [--project <path>] [--force]`);
 }
 
@@ -293,8 +297,8 @@ function assertNoRuntimeDrift(root, lock, force) {
 
 function install(options) {
   const root = projectRoot(options);
-  const sourceArg = options._[0];
-  if (!sourceArg) throw new Error("install requires <git-url-or-local-path>");
+  const sourceArg = options._[0] || options.source || process.env.AI_PROJECT_MANAGER_SOURCE || DEFAULT_SOURCE_URL;
+  if (!sourceArg) throw new Error("install requires <git-url-or-local-path> or --source");
   const sourceInfo = materializeSource(sourceArg, options.version);
   try {
     readManifest(sourceInfo.path);
@@ -343,8 +347,11 @@ function status(options) {
 try {
   const options = parseOptions(args);
   if (command === "install") install(options);
+  else if (command === "install-here") install({ ...options, project: process.cwd() });
   else if (command === "update") update(options);
+  else if (command === "update-here") update({ ...options, project: process.cwd() });
   else if (command === "status") status(options);
+  else if (command === "status-here") status({ ...options, project: process.cwd() });
   else if (command === "sync-discovery") {
     const changed = syncDiscovery(projectRoot(options), options.force);
     console.log(`synced: ${changed.length} files`);
