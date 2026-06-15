@@ -1,6 +1,8 @@
 {
   "version": "2.0.0",
   "canonicalRoot": ".ai-project",
+  "runtimeRoot": ".ai-project/runtime",
+  "localRoot": ".ai-project/local",
   "skills": [
     "backend",
     "close-task",
@@ -12,6 +14,7 @@
     "log-issue",
     "migration",
     "next-task",
+    "project-discovery",
     "push",
     "schema",
     "session-status",
@@ -28,6 +31,7 @@
     "log-issue",
     "migration",
     "next-task",
+    "project-discovery",
     "push",
     "schema",
     "session-status",
@@ -38,6 +42,7 @@
     "README.md",
     "MIGRATION.md",
     "CHECKS.md",
+    "scripts/ai-project.mjs",
     "core/KERNEL.md",
     "core/LOAD_ORDER.md",
     "core/CONVENTIONS.md",
@@ -52,6 +57,7 @@
     "backend",
     "frontend",
     "migration",
+    "discovery",
     "domain",
     "roadmap"
   ],

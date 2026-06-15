@@ -4,7 +4,8 @@ Portable prompt, skill, command, roadmap, memory, and issue-template starter for
 
 Two modes:
 - Template source: `AI-ProjectStarter/`. Maintained here, validated here, not loaded during normal runtime.
-- Installed runtime: `.ai-project/`. Agents load only this copy after install.
+- Installed package: `.ai-project/runtime/`. Agents load update-safe files from here.
+- Local state: `.ai-project/local/`. Project memory, overlays, and roadmap live here and are not overwritten by package updates.
 
 ## Goals
 - Keep internal prompts in English.
@@ -17,29 +18,41 @@ Two modes:
 - `core/`: shared rules loaded by all agents.
 - `adapters/`: Codex and Claude entrypoints generated from shared rules.
 - `starter.json`: manifest for skills, commands, required files, tags, and roadmap layers.
-- `skills/`: portable task skills. Installed under `.ai-project/skills/`.
-- `commands/claude/`: slash-command wrappers. Installed under `.ai-project/commands/claude/`.
-- `project/`: portable project index, memory shards, and roadmap templates.
+- `skills/`: portable task skills. Installed under `.ai-project/runtime/skills/`.
+- `commands/claude/`: slash-command wrappers. Installed under `.ai-project/runtime/commands/claude/`.
+- `project/`: local project index, memory shards, and roadmap templates. Seeded to `.ai-project/local/project/`.
 - `github/ISSUE_TEMPLATE/`: GitHub issue templates.
-- `overlays/example/`: placeholder overlay shape only. Real overlays are created after install in `.ai-project/overlays/<project>/`.
+- `overlays/example/`: placeholder overlay shape only. Real overlays are seeded under `.ai-project/local/project/overlays/`.
 
 ## Install
-1. Create `.ai-project/`.
-2. Copy `AI-ProjectStarter/*` into `.ai-project/`.
-3. Copy `.ai-project/adapters/codex/AGENTS.md` to project root `AGENTS.md` or merge into existing one.
-4. Copy `.ai-project/adapters/claude/CLAUDE.md` to project root `CLAUDE.md` or merge into existing one.
-5. Keep skills canonical in `.ai-project/skills/`. Also copy them to `.agents/skills/` only if Codex needs local skill discovery.
-6. Copy `.ai-project/commands/claude/*` to `.claude/commands/` for Claude slash-command discovery.
-7. Copy `.ai-project/github/ISSUE_TEMPLATE/*` to `.github/ISSUE_TEMPLATE/` if GitHub issue forms should change.
-8. Add one project overlay in `.ai-project/overlays/<project>/PROJECT_OVERLAY.md`.
 
-Do not add real project overlays to `AI-ProjectStarter/`. Keep project names, paths, aliases, DB quirks, domain facts, and private conventions in installed runtime overlays or project memory.
+Use Git as the package source:
+
+```bash
+node AI-ProjectStarter/scripts/ai-project.mjs install <git-url-or-local-path> --version v2.0.0
+```
+
+Installer behavior:
+- copies package files into `.ai-project/runtime/`
+- seeds `.ai-project/local/project/` only when missing
+- writes `.ai-project.lock.json`
+- syncs root `AGENTS.md`, root `CLAUDE.md`, `.agents/skills/`, and `.claude/commands/`
+
+Update:
+
+```bash
+node .ai-project/runtime/scripts/ai-project.mjs update
+node .ai-project/runtime/scripts/ai-project.mjs status
+node .ai-project/runtime/scripts/ai-project.mjs sync-discovery
+```
+
+Do not add real project overlays to `AI-ProjectStarter/`. Keep project names, paths, aliases, DB quirks, domain facts, and private conventions in `.ai-project/local/project/`.
 
 ## Runtime Loading
 Runtime agents load:
-- `.ai-project/core/`
-- `.ai-project/project/PROJECT_INDEX.md`
-- matching `.ai-project/skills/<name>/SKILL.md`
+- `.ai-project/runtime/core/`
+- `.ai-project/local/project/PROJECT_INDEX.md`
+- matching `.ai-project/runtime/skills/<name>/SKILL.md`
 - tagged memory/roadmap shards only when required
 
 Runtime agents must not load `README.md`, `MIGRATION.md`, or `CHECKS.md` unless maintaining or validating the starter itself.

@@ -1,3 +1,3 @@
 # /log-issue
 
-Load `.ai-project/skills/log-issue/SKILL.md`. Follow its `load/scope/deny/procedure/done`.
+Load `.ai-project/runtime/skills/log-issue/SKILL.md`. Follow its `load/scope/deny/procedure/done`.

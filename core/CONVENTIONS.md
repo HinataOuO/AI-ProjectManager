@@ -5,6 +5,7 @@
 - `backend`: server code, DB access, API, auth, validation.
 - `frontend`: UI, components, styles, i18n strings.
 - `migration`: schema changes, migrations, seeds, import scripts.
+- `discovery`: confirmed project map, paths, commands, and architecture notes.
 - `domain`: project domain rules.
 - `roadmap`: task planning and completion state.
 

@@ -7,7 +7,7 @@ description: Full DB migration workflow: schema, migration, seed/import scripts.
 Run or prepare complete migration work.
 
 ## load
-- `project/memory/MEMORY_INDEX.md`
+- `.ai-project/local/project/memory/MEMORY_INDEX.md`
 - shards tagged `migration`
 - overlay for DB provider, scripts, commands
 

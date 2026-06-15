@@ -4,8 +4,8 @@
 - App root: set in overlay.
 - Source: set in overlay.
 - Tests: set in overlay.
-- Roadmap: `project/roadmap/`
-- Memory: `project/memory/`
+- Roadmap: `.ai-project/local/project/roadmap/`
+- Memory: `.ai-project/local/project/memory/`
 
 ## Load
 - Read overlay only when project-specific facts are needed.

@@ -4,6 +4,8 @@ import { join, relative } from "node:path";
 
 const root = process.argv[2] || new URL("..", import.meta.url).pathname;
 const canonical = ".ai-project";
+const runtime = ".ai-project/runtime";
+const local = ".ai-project/local";
 const requiredHeadings = ["purpose", "load", "scope", "deny", "procedure", "done"];
 const forbiddenTerms = [
   [71, 101, 115, 116, 105, 111, 110, 97, 108, 101, 72, 82],
@@ -12,6 +14,19 @@ const forbiddenTerms = [
   [114, 118, 111],
   [72, 105, 110, 97, 116, 97, 79, 117, 79],
 ].map((codes) => String.fromCharCode(...codes));
+const hardcodeScanRoots = [
+  "adapters",
+  "commands",
+  "core",
+  "github",
+  "overlays/example",
+  "project",
+  "skills",
+  "CHECKS.md",
+  "MIGRATION.md",
+  "README.md",
+  "starter.json",
+];
 
 let failed = false;
 const failures = [];
@@ -71,12 +86,12 @@ function uniqueList(name, values) {
 
 function parseFrontmatter(text, relPath) {
   if (!text.startsWith("---\n")) {
-    fail(`memory shard missing frontmatter: ${relPath}`);
+    fail(`missing frontmatter: ${relPath}`);
     return {};
   }
   const end = text.indexOf("\n---", 4);
   if (end === -1) {
-    fail(`memory shard unclosed frontmatter: ${relPath}`);
+    fail(`unclosed frontmatter: ${relPath}`);
     return {};
   }
   const data = {};
@@ -85,6 +100,18 @@ function parseFrontmatter(text, relPath) {
     if (match) data[match[1]] = match[2].trim();
   }
   return data;
+}
+
+function walkIfDirectory(relPath, predicate = () => true) {
+  const path = join(root, relPath);
+  try {
+    const stat = statSync(path);
+    if (stat.isFile()) return predicate(path) ? [path] : [];
+    if (stat.isDirectory()) return walk(path, predicate);
+  } catch {
+    fail(`missing hardcode scan root: ${relPath}`);
+  }
+  return [];
 }
 
 function parseInlineList(value) {
@@ -102,6 +129,8 @@ const memoryTags = new Set(uniqueList("memoryTags", manifest.memoryTags));
 uniqueList("roadmapLayers", manifest.roadmapLayers);
 
 if (manifest.canonicalRoot !== canonical) fail(`canonicalRoot must be ${canonical}`);
+if (manifest.runtimeRoot !== runtime) fail(`runtimeRoot must be ${runtime}`);
+if (manifest.localRoot !== local) fail(`localRoot must be ${local}`);
 
 for (const file of requiredFiles) {
   if (!existsFile(file)) fail(`missing required file: ${file}`);
@@ -111,7 +140,7 @@ for (const key of ["claudeAliases", "aliases"]) {
   if (manifest[key]) fail(`starter.json ${key} must not define project aliases`);
 }
 
-for (const path of walk(root)) {
+for (const path of hardcodeScanRoots.flatMap((relPath) => walkIfDirectory(relPath))) {
   const relPath = relative(root, path);
   if (relPath === "scripts/validate-starter.mjs") continue;
   const text = readText(path);
@@ -126,7 +155,11 @@ for (const skill of skills) {
     fail(`missing skill: ${skill}`);
     continue;
   }
-  const headings = readText(join(root, relPath))
+  const text = readText(join(root, relPath));
+  const fm = parseFrontmatter(text, relPath);
+  if (fm.name !== skill) fail(`skill name mismatch in ${relPath}: expected ${skill}`);
+  if (!fm.description) fail(`skill missing description: ${relPath}`);
+  const headings = text
     .split("\n")
     .filter((line) => line.startsWith("## "))
     .map((line) => line.slice(3).trim());
@@ -141,9 +174,9 @@ for (const command of commands) {
     fail(`missing Claude wrapper: ${command}`);
     continue;
   }
-  const expected = `${canonical}/skills/${command}/SKILL.md`;
+  const expected = `${runtime}/skills/${command}/SKILL.md`;
   const text = readText(join(root, relPath));
-  const skillRefs = [...text.matchAll(/\.ai-project\/skills\/([^/\s`]+)\/SKILL\.md/g)];
+  const skillRefs = [...text.matchAll(/\.ai-project\/runtime\/skills\/([^/\s`]+)\/SKILL\.md/g)];
   if (skillRefs.length !== 1 || skillRefs[0][0] !== expected) {
     fail(`bad Claude wrapper target in ${relPath}: expected ${expected}`);
   }
@@ -182,7 +215,7 @@ for (const base of ["adapters", "commands/claude"]) {
 const adapterText = walk(join(root, "adapters"), (path) => path.endsWith(".md"))
   .map((path) => readText(path))
   .join("\n");
-for (const segment of [`${canonical}/core/`, `${canonical}/project/`, `${canonical}/skills/`]) {
+for (const segment of [`${runtime}/core/`, `${local}/project/`, `${runtime}/skills/`]) {
   if (!adapterText.includes(segment)) fail(`adapters do not reference ${segment}`);
 }
 

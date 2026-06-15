@@ -7,7 +7,7 @@ description: Read-only roadmap status overview.
 Report current roadmap status without loading layer details.
 
 ## load
-- `project/roadmap/INDEX.md`
+- `.ai-project/local/project/roadmap/INDEX.md`
 - `MACRO.md` files for active `wip` features only
 
 ## scope

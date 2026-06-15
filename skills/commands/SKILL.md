@@ -9,7 +9,7 @@ Route user intent to one focused skill.
 ## load
 - `core/KERNEL.md`
 - `core/LOAD_ORDER.md`
-- `project/PROJECT_INDEX.md`
+- `.ai-project/local/project/PROJECT_INDEX.md`
 
 ## scope
 - Skill discovery only.

@@ -14,3 +14,6 @@ Load `always` shards first. Load other shards only when task scope matches.
 
 ## migration
 - `migration/patterns.md`
+
+## discovery
+- Add project-specific discovery shards after install.

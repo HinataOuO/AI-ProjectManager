@@ -8,7 +8,7 @@ Turn issue context into scoped plan.
 
 ## load
 - Issue body/comments.
-- `project/PROJECT_INDEX.md`
+- `.ai-project/local/project/PROJECT_INDEX.md`
 - relevant skill by scope.
 - relevant memory shards.
 

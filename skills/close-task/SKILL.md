@@ -7,7 +7,7 @@ description: Close a roadmap layer after explicit confirmation.
 Mark a roadmap layer complete.
 
 ## load
-- `project/roadmap/INDEX.md`
+- `.ai-project/local/project/roadmap/INDEX.md`
 - target feature `MACRO.md`
 - target layer file
 
