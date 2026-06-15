@@ -1,6 +1,6 @@
 ---
 name: log-issue
-description: Create issue and memory shard; no implicit push.
+description: Create issue and propose memory shard; no implicit push.
 ---
 
 ## purpose
@@ -18,14 +18,16 @@ Persist reported problem in issue tracker and memory.
 ## deny
 - Do not push.
 - Do not create duplicate issue when existing one matches.
+- Do not write memory before explicit confirmation.
 
 ## procedure
 1. Collect title, problem, scope, labels.
 2. Search existing issues if tool available.
 3. Create or update issue.
-4. Create/update memory shard and index.
-5. Report issue URL.
+4. Propose memory shard/index delta when durable and useful.
+5. Write memory only after explicit confirmation.
+6. Report issue URL and memory result.
 
 ## done
 - Issue URL reported.
-- Memory updated when useful.
+- Memory delta proposed or applied after confirmation.

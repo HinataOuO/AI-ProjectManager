@@ -12,6 +12,8 @@ Starter maintenance context only. Runtime agents must not load this checklist un
 ## Safety
 - `task-status` and `session-status` stay read-only.
 - `close-task` asks explicit confirmation before roadmap/status writes.
+- Task completion never writes memory automatically; it proposes target, content, and reason only for durable reusable facts, or states no memory delta.
+- New memory shards preserve frontmatter conventions and require `MEMORY_INDEX.md` updates.
 - `push` asks explicit confirmation before git push, blocks `.env*`, `*.key`, `*.pem`, and never force pushes.
 - Destructive DB or filesystem operations require explicit confirmation.
 - `project-discovery` proposes overlay/memory deltas and writes only after explicit confirmation.

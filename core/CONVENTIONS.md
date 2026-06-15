@@ -33,6 +33,14 @@ depends: []
 ---
 ```
 
+## Memory Writes
+- Memory lives under `.ai-project/local/project/memory/`.
+- Keep existing frontmatter when editing shards.
+- Use existing shards when tags and scope match.
+- Create a new shard only when no existing shard fits.
+- Update `MEMORY_INDEX.md` when creating a new shard.
+- Never write memory automatically; propose target, content, and reason, then wait for explicit confirmation.
+
 ## Skill Body Shape
 Use only these headings after frontmatter:
 

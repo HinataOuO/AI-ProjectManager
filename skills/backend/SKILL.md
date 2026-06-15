@@ -26,8 +26,10 @@ Implement backend changes with project patterns.
 2. Confirm validation/auth requirements.
 3. Edit narrow files.
 4. Run focused verification.
+5. Review memory delta: propose only durable backend facts, or state none.
 
 ## done
 - Backend behavior implemented.
 - Validation/auth covered.
 - Verification result reported.
+- No memory written without explicit confirmation.

@@ -28,7 +28,7 @@ Build reusable project understanding without scanning large repos.
 2. Read existing overlay and relevant memory.
 3. Inspect only the smallest file set needed to confirm or reject facts.
 4. Report confirmed facts, assumptions, key paths, commands, patterns, and gaps.
-5. Propose exact overlay and memory deltas.
+5. Propose exact overlay and memory deltas, including optional end-of-pass memory delta for durable facts.
 6. Write deltas only after explicit confirmation.
 
 ## done

@@ -24,7 +24,9 @@ Change data model only.
 2. Edit schema.
 3. Generate/check migration if requested or project flow requires.
 4. Report migration command needed.
+5. Review memory delta: propose only durable schema/migration facts, or state none.
 
 ## done
 - Schema updated.
 - Migration impact stated.
+- No memory written without explicit confirmation.

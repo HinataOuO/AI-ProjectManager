@@ -24,8 +24,10 @@ Implement UI changes consistent with project design.
 2. Edit smallest component/page/message set.
 3. Check responsive states when visible UI changes.
 4. Run focused lint/typecheck if available.
+5. Review memory delta: propose only durable frontend facts, or state none.
 
 ## done
 - UI behavior complete.
 - i18n kept in sync.
 - Verification result reported.
+- No memory written without explicit confirmation.

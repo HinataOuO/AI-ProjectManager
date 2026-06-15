@@ -21,7 +21,9 @@ Keep locale message files synchronized.
 2. Add/update same keys in same order.
 3. Preserve JSON formatting.
 4. Validate JSON syntax.
+5. Review memory delta: propose only durable i18n facts, or state none.
 
 ## done
 - Locale files synced.
 - JSON validation passes.
+- No memory written without explicit confirmation.

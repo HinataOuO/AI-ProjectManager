@@ -26,7 +26,9 @@ Run or prepare complete migration work.
 3. Edit schema/scripts.
 4. Run approved migration/verification commands.
 5. Record recovery notes when needed.
+6. Review memory delta: propose only durable migration facts, or state none.
 
 ## done
 - Migration path ready or executed.
 - Data/script impact verified or blocker reported.
+- No memory written without explicit confirmation.
