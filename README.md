@@ -24,12 +24,12 @@ Two modes:
 - `github/ISSUE_TEMPLATE/`: GitHub issue templates.
 - `overlays/example/`: placeholder overlay shape only. Real overlays are seeded under `.ai-project/local/project/overlays/`.
 
-## Install
+## Install And Update
 
-Use Git as the package source:
+Use Git as the package source. In a target project, run:
 
 ```bash
-node AI-ProjectStarter/scripts/ai-project.mjs install <git-url-or-local-path> --version v2.0.0
+node /path/to/AI-ProjectStarter/scripts/ai-project.mjs install <git-url-or-local-path> --version v2.0.0
 ```
 
 Installer behavior:
@@ -38,13 +38,37 @@ Installer behavior:
 - writes `.ai-project.lock.json`
 - syncs root `AGENTS.md`, root `CLAUDE.md`, `.agents/skills/`, and `.claude/commands/`
 
-Update:
+After install:
+
+```bash
+git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/local
+git commit -m "chore: install AI project manager"
+```
+
+Commit `.ai-project/local/` because it contains project memory, overlays, and roadmap state. Do not edit `.ai-project/runtime/` by hand; it is package-managed.
+
+Update the package:
 
 ```bash
 node .ai-project/runtime/scripts/ai-project.mjs update
+git diff
+git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/runtime
+git commit -m "chore: update AI project manager"
+```
+
+Check installed state:
+
+```bash
 node .ai-project/runtime/scripts/ai-project.mjs status
+```
+
+Regenerate discovery copies after manual cleanup or adapter changes:
+
+```bash
 node .ai-project/runtime/scripts/ai-project.mjs sync-discovery
 ```
+
+If `update` reports runtime drift, someone edited `.ai-project/runtime/` locally. Move useful changes into `.ai-project/local/` or the source repo, then rerun `update`; use `--force` only to discard local runtime edits.
 
 Do not add real project overlays to `AI-ProjectStarter/`. Keep project names, paths, aliases, DB quirks, domain facts, and private conventions in `.ai-project/local/project/`.
 
