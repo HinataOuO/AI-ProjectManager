@@ -1,6 +1,6 @@
 ---
 name: backend
-description: Backend tasks: server code, DB queries, API routes, auth, validation.
+description: "Backend tasks: server code, DB queries, API routes, auth, validation."
 ---
 
 ## purpose

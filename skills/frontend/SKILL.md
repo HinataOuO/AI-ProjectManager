@@ -1,6 +1,6 @@
 ---
 name: frontend
-description: Frontend tasks: pages, components, styles, client behavior, i18n UI strings.
+description: "Frontend tasks: pages, components, styles, client behavior, i18n UI strings."
 ---
 
 ## purpose

@@ -1,6 +1,6 @@
 ---
 name: migration
-description: Full DB migration workflow: schema, migration, seed/import scripts.
+description: "Full DB migration workflow: schema, migration, seed/import scripts."
 ---
 
 ## purpose
