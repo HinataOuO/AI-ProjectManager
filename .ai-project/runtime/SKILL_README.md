@@ -23,7 +23,7 @@ Starter maintenance context only. Runtime agents must not load this file unless 
 - `starter.json`: manifest for skills, commands, required files, tags, and roadmap layers.
 - `skills/`: portable task skills. Installed under `.ai-project/runtime/skills/`.
 - `commands/claude/`: slash-command wrappers. Installed under `.ai-project/runtime/commands/claude/`.
-- `project/`: packaged local-state templates. Installed under `.ai-project/runtime/project/` and seeded to `.ai-project/local/project/` only during install when missing.
+- `project/`: local project index, memory shards, and roadmap templates. Seeded to `.ai-project/local/project/`.
 - `github/ISSUE_TEMPLATE/`: GitHub issue templates.
 - `overlays/example/`: placeholder overlay shape only. Real overlays are seeded under `.ai-project/local/project/overlays/`.
 
@@ -46,8 +46,6 @@ git commit -m "chore: install AI project manager"
 Commit `.ai-project/local/` because it contains project memory, overlays, and roadmap state. Do not edit `.ai-project/runtime/` by hand; it is package-managed.
 
 If `update` reports runtime drift, someone edited `.ai-project/runtime/` locally. Move useful changes into `.ai-project/local/` or the source repo, then rerun `update`; use `--force` only to discard local runtime edits.
-
-`update` is cwd-first: run `node .ai-project/runtime/scripts/ai-project.mjs update` from the target repository, or pass `--project <path>`. It only replaces `.ai-project/runtime/`, refreshes discovery files, and rewrites `.ai-project.lock.json`; it never overwrites `.ai-project/local/`.
 
 Do not add real project overlays to `AI-ProjectStarter/`. Keep project names, paths, aliases, DB quirks, domain facts, and private conventions in `.ai-project/local/project/`.
 

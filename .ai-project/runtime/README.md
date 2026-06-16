@@ -28,18 +28,16 @@ git commit -m "chore: install AI project manager"
 ## Update
 
 ```bash
-node .ai-project/runtime/scripts/ai-project.mjs update
+node .ai-project/runtime/scripts/ai-project.mjs update-here
 git diff
 git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/runtime
 git commit -m "chore: update AI project manager"
 ```
 
-`update` only replaces `.ai-project/runtime/`, refreshes discovery files, and rewrites `.ai-project.lock.json`. It never overwrites `.ai-project/local/`.
-
 ## Status
 
 ```bash
-node .ai-project/runtime/scripts/ai-project.mjs status
+node .ai-project/runtime/scripts/ai-project.mjs status-here
 ```
 
 ## Sync Discovery

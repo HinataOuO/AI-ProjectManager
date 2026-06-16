@@ -395,7 +395,7 @@
               <tr><td><code>core/</code></td><td>Shared kernel, load order, and conventions.</td><td><code>.ai-project/runtime/core/</code></td></tr>
               <tr><td><code>skills/</code></td><td>Portable task skills, one directory per skill.</td><td><code>.ai-project/runtime/skills/</code></td></tr>
               <tr><td><code>commands/claude/</code></td><td>Thin Claude slash-command wrappers that load skills.</td><td><code>.ai-project/runtime/commands/claude/</code></td></tr>
-              <tr><td><code>project/</code></td><td>Packaged project index, memory, and roadmap templates.</td><td><code>.ai-project/runtime/project/</code>; seeded to <code>.ai-project/local/project/</code> only during install when missing.</td></tr>
+              <tr><td><code>project/</code></td><td>Project index, memory, and roadmap templates.</td><td><code>.ai-project/local/project/</code>, seeded only when missing.</td></tr>
               <tr><td><code>overlays/example/</code></td><td>Example shape for project-specific overlays.</td><td><code>.ai-project/local/project/overlays/example/</code></td></tr>
               <tr><td><code>github/ISSUE_TEMPLATE/</code></td><td>Scope/layer-aligned GitHub issue templates.</td><td>Available in runtime; copy manually when replacing repo templates.</td></tr>
               <tr><td><code>scripts/ai-project.mjs</code></td><td>Installer, updater, status, and discovery sync.</td><td><code>.ai-project/runtime/scripts/ai-project.mjs</code></td></tr>
@@ -440,10 +440,10 @@ git commit -m "chore: install AI project manager"</code></pre>
             <tbody>
               <tr><td><code>install</code></td><td>Install into <code>--project &lt;path&gt;</code> or cwd.</td><td>Accepts Git URL or local path.</td></tr>
               <tr><td><code>install-here</code></td><td>Install into the current repository.</td><td>Uses <code>--source</code>, <code>AI_PROJECT_MANAGER_SOURCE</code>, or default GitHub source.</td></tr>
-              <tr><td><code>update</code></td><td>Update runtime in cwd or <code>--project &lt;path&gt;</code>.</td><td>Checks runtime drift and never overwrites <code>.ai-project/local/</code>.</td></tr>
-              <tr><td><code>update-here</code></td><td>Compatibility alias for updating the current repository.</td><td>Prefer <code>update</code>.</td></tr>
+              <tr><td><code>update</code></td><td>Update runtime in <code>--project &lt;path&gt;</code>.</td><td>Checks runtime drift before overwrite.</td></tr>
+              <tr><td><code>update-here</code></td><td>Update runtime in the current repository.</td><td>Does not overwrite local state.</td></tr>
               <tr><td><code>status</code></td><td>Show source, ref, package version, commit, drift.</td><td>Reads <code>.ai-project.lock.json</code>.</td></tr>
-              <tr><td><code>status-here</code></td><td>Compatibility alias for current-repository status.</td><td>Prefer <code>status</code>.</td></tr>
+              <tr><td><code>status-here</code></td><td>Status for the current repository.</td><td>Read-only.</td></tr>
               <tr><td><code>sync-discovery</code></td><td>Regenerate entrypoints and discovery copies.</td><td>Writes <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>.agents/skills/</code>, <code>.claude/commands/</code>.</td></tr>
             </tbody>
           </table>
@@ -451,14 +451,14 @@ git commit -m "chore: install AI project manager"</code></pre>
           <h3>Options</h3>
           <ul>
             <li><code>--version &lt;ref&gt;</code>: branch, tag, or Git ref for clone/update.</li>
-            <li><code>--project &lt;path&gt;</code>: target repository; defaults to cwd.</li>
+            <li><code>--project &lt;path&gt;</code>: target repository for non-<code>*-here</code> commands.</li>
             <li><code>--source &lt;git-url-or-local-path&gt;</code>: source for <code>install-here</code>.</li>
             <li><code>--force</code>: allow overwriting existing files or runtime with drift.</li>
           </ul>
 
           <h3>Quick commands</h3>
-          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update
-node .ai-project/runtime/scripts/ai-project.mjs status
+          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update-here
+node .ai-project/runtime/scripts/ai-project.mjs status-here
 node .ai-project/runtime/scripts/ai-project.mjs sync-discovery
 bash scripts/validate-starter.sh</code></pre>
         </section>
@@ -651,7 +651,7 @@ depends: []
           </ul>
 
           <h3>Update</h3>
-          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update
+          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update-here
 git diff
 git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/runtime
 git commit -m "chore: update AI project manager"</code></pre>

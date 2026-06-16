@@ -37,12 +37,10 @@ function usage() {
   ai-project install <git-url-or-local-path> [--version <ref>] [--project <path>] [--force]
   ai-project install-here [--source <git-url-or-local-path>] [--version <ref>] [--force]
   ai-project update [--version <ref>] [--project <path>] [--force]
-  ai-project status [--project <path>]
-  ai-project sync-discovery [--project <path>] [--force]
-
-Compatibility aliases:
   ai-project update-here [--version <ref>] [--force]
-  ai-project status-here`);
+  ai-project status [--project <path>]
+  ai-project status-here
+  ai-project sync-discovery [--project <path>] [--force]`);
 }
 
 function parseOptions(values) {
@@ -115,17 +113,7 @@ function packageFilter(src) {
   return !PACKAGE_EXCLUDES.has(basename(src));
 }
 
-function assertRuntimeTarget(root, target) {
-  const expected = resolve(runtimePath(root));
-  const actual = resolve(target);
-  if (actual !== expected) {
-    throw new Error(`Refusing to replace non-runtime path: ${target}`);
-  }
-}
-
-function replaceRuntimeFromSource(root, source) {
-  const target = runtimePath(root);
-  assertRuntimeTarget(root, target);
+function copyPackage(source, target) {
   const parent = dirname(target);
   const temp = join(parent, `.runtime-${process.pid}-${Date.now()}`);
   mkdirSync(parent, { recursive: true });
@@ -293,22 +281,16 @@ function makeLock(root, sourceInfo, sourcePath, versionRef) {
   };
 }
 
-function runtimeDrift(root, lock) {
-  return diffHashes(lock.fileHashes, hashTree(runtimePath(root)));
-}
-
-function formatList(values) {
-  return values
-    .slice(0, 30)
-    .map((item) => `- ${item}`)
-    .join("\n");
-}
-
-function assertNoRuntimeDrift(root, lock, force = false) {
-  const changed = runtimeDrift(root, lock);
-  if (force) return changed;
+function assertNoRuntimeDrift(root, lock, force) {
+  if (force) return [];
+  const changed = diffHashes(lock.fileHashes, hashTree(runtimePath(root)));
   if (changed.length > 0) {
-    throw new Error(`Runtime drift detected. Re-run with --force or restore local runtime edits:\n${formatList(changed)}`);
+    throw new Error(
+      `Runtime drift detected. Re-run with --force or restore local runtime edits:\n${changed
+        .slice(0, 30)
+        .map((item) => `- ${item}`)
+        .join("\n")}`,
+    );
   }
   return changed;
 }
@@ -320,7 +302,7 @@ function install(options) {
   const sourceInfo = materializeSource(sourceArg, options.version);
   try {
     readManifest(sourceInfo.path);
-    replaceRuntimeFromSource(root, sourceInfo.path);
+    copyPackage(sourceInfo.path, runtimePath(root));
     const seeded = seedLocal(sourceInfo.path, root);
     const changed = syncDiscovery(root, options.force);
     writeJson(lockPath(root), makeLock(root, sourceInfo, sourceInfo.path, options.version));
@@ -340,7 +322,7 @@ function update(options) {
   const sourceInfo = materializeSource(lock.source.url, version);
   try {
     readManifest(sourceInfo.path);
-    replaceRuntimeFromSource(root, sourceInfo.path);
+    copyPackage(sourceInfo.path, runtimePath(root));
     const changed = syncDiscovery(root, options.force);
     writeJson(lockPath(root), makeLock(root, sourceInfo, sourceInfo.path, version));
     console.log(`updated ${lock.source.url}`);
@@ -353,27 +335,23 @@ function update(options) {
 function status(options) {
   const root = projectRoot(options);
   const lock = readJson(lockPath(root));
-  const changed = runtimeDrift(root, lock);
+  const changed = diffHashes(lock.fileHashes, hashTree(runtimePath(root)));
   console.log(`source: ${lock.source.url}`);
   console.log(`ref: ${lock.source.ref || "(none)"}`);
   console.log(`packageVersion: ${lock.installed.packageVersion || "(unknown)"}`);
   console.log(`commit: ${lock.installed.commit || "(unknown)"}`);
   console.log(`runtimeDrift: ${changed.length}`);
-  if (changed.length > 0) console.log(formatList(changed));
+  for (const rel of changed.slice(0, 30)) console.log(`- ${rel}`);
 }
 
 try {
   const options = parseOptions(args);
-  const commands = new Map([
-    ["install", install],
-    ["install-here", (values) => install({ ...values, project: process.cwd() })],
-    ["update", update],
-    ["update-here", (values) => update({ ...values, project: process.cwd() })],
-    ["status", status],
-    ["status-here", (values) => status({ ...values, project: process.cwd() })],
-  ]);
-
-  if (commands.has(command)) commands.get(command)(options);
+  if (command === "install") install(options);
+  else if (command === "install-here") install({ ...options, project: process.cwd() });
+  else if (command === "update") update(options);
+  else if (command === "update-here") update({ ...options, project: process.cwd() });
+  else if (command === "status") status(options);
+  else if (command === "status-here") status({ ...options, project: process.cwd() });
   else if (command === "sync-discovery") {
     const changed = syncDiscovery(projectRoot(options), options.force);
     console.log(`synced: ${changed.length} files`);
