@@ -427,8 +427,8 @@
               </tr>
               <tr>
                 <td><code>project/</code></td>
-                <td>Template per project index, memoria e roadmap.</td>
-                <td><code>.ai-project/local/project/</code> solo se manca.</td>
+                <td>Template packaged per project index, memoria e roadmap.</td>
+                <td><code>.ai-project/runtime/project/</code>; seed in <code>.ai-project/local/project/</code> solo durante install se manca.</td>
               </tr>
               <tr>
                 <td><code>overlays/example/</code></td>
@@ -505,13 +505,13 @@ git commit -m "chore: install AI project manager"</code></pre>
               </tr>
               <tr>
                 <td><code>update</code></td>
-                <td>Aggiorna runtime in <code>--project &lt;path&gt;</code>.</td>
-                <td>Prima controlla runtime drift contro lock.</td>
+                <td>Aggiorna runtime in cwd o <code>--project &lt;path&gt;</code>.</td>
+                <td>Controlla runtime drift e non sovrascrive mai <code>.ai-project/local/</code>.</td>
               </tr>
               <tr>
                 <td><code>update-here</code></td>
-                <td>Aggiorna runtime nel repository corrente.</td>
-                <td>Non sovrascrive local state.</td>
+                <td>Alias compatibile per aggiornare il repository corrente.</td>
+                <td>Preferire <code>update</code>.</td>
               </tr>
               <tr>
                 <td><code>status</code></td>
@@ -520,8 +520,8 @@ git commit -m "chore: install AI project manager"</code></pre>
               </tr>
               <tr>
                 <td><code>status-here</code></td>
-                <td>Status nel repository corrente.</td>
-                <td>Read-only.</td>
+                <td>Alias compatibile per status del repository corrente.</td>
+                <td>Preferire <code>status</code>.</td>
               </tr>
               <tr>
                 <td><code>sync-discovery</code></td>
@@ -534,14 +534,14 @@ git commit -m "chore: install AI project manager"</code></pre>
           <h3>Opzioni</h3>
           <ul>
             <li><code>--version &lt;ref&gt;</code>: branch, tag o ref Git per clone/update.</li>
-            <li><code>--project &lt;path&gt;</code>: target repository per comandi non <code>*-here</code>.</li>
+            <li><code>--project &lt;path&gt;</code>: target repository; default cwd.</li>
             <li><code>--source &lt;git-url-or-local-path&gt;</code>: sorgente per <code>install-here</code>.</li>
             <li><code>--force</code>: permette overwrite di file esistenti o runtime con drift.</li>
           </ul>
 
           <h3>Comandi rapidi</h3>
-          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update-here
-node .ai-project/runtime/scripts/ai-project.mjs status-here
+          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update
+node .ai-project/runtime/scripts/ai-project.mjs status
 node .ai-project/runtime/scripts/ai-project.mjs sync-discovery
 bash scripts/validate-starter.sh</code></pre>
         </section>
@@ -861,7 +861,7 @@ depends: []
           </ul>
 
           <h3>Update</h3>
-          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update-here
+          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update
 git diff
 git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/runtime
 git commit -m "chore: update AI project manager"</code></pre>

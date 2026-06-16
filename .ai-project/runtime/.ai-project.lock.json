@@ -11,8 +11,8 @@
   },
   "installed": {
     "packageVersion": "2.0.0",
-    "commit": "1333692c22eb68ad2e267ae8d9cc5d685ac91d5e",
-    "installedAt": "2026-06-16T15:11:56.563Z"
+    "commit": "9691db67c4433d9f1039c9a51c14dc50855b947a",
+    "installedAt": "2026-06-16T14:29:26.314Z"
   },
   "skills": [
     "backend",
@@ -32,13 +32,10 @@
     "task-status"
   ],
   "fileHashes": {
-    ".ai-project.lock.json": "5f7e91a3bb9e7dfc825c4e52fbdbd60016b212f0a6f0f1f670409cba631b4184",
-    "AGENTS.md": "9200f2206bec643e61e49dd25bd2a76661175b38e102d47ffc4fabe0215d5b1f",
     "CHECKS.md": "ea985e255ede6c5f1582ea9dcbdd867fb7c26d26c4bc40dec7e9d81fe48f249e",
-    "CLAUDE.md": "869c9c097d4a68cadd8d02515e61103bb0fdd3bbf65f020d859c0fc197cff673",
     "MIGRATION.md": "a07dfb92dd641b68b71dc7ed05aa01ea8545e8280a7cfb19c488577a9f154f29",
-    "README.md": "b63959b8cdb361f972f41c8baf928e6d6f3afabfb32b9237c0f1f072eb1b436e",
-    "SKILL_README.md": "30808310e0b97a67fb739b1ea5c34cd4d3f6c9923002c707705592fa304745b2",
+    "README.md": "35fb23624a8f22a5e3d3d9254bd81b9e1e9701d3a20c9300a277a94b56e95304",
+    "SKILL_README.md": "722f0ab464b38b562e87c89c33209e940650a97d48f98f987eb92cc8f33b710c",
     "adapters/claude/CLAUDE.md": "869c9c097d4a68cadd8d02515e61103bb0fdd3bbf65f020d859c0fc197cff673",
     "adapters/codex/AGENTS.md": "9200f2206bec643e61e49dd25bd2a76661175b38e102d47ffc4fabe0215d5b1f",
     "commands/claude/backend.md": "d0ac02ca6fe89beea8830402283cb50fa6891c195da9f96ff64af2673d0f3f68",
@@ -59,8 +56,8 @@
     "core/CONVENTIONS.md": "7883a9b527a08b915023ed3d2c15558df3eff157d8fb1ca0ee5f7a40f8715ddf",
     "core/KERNEL.md": "41dd2af875c30fc9bab09749e7d227e57cb9d3e977dd0db387f0df413b4f820f",
     "core/LOAD_ORDER.md": "fa61c0aba30de2412770e35698cea169af0a205a0aeaeaab977654cfa2bdac6f",
-    "docs/ai-project-starter-en.html": "a96a78dde08f8a56ad098aae3c57518e1ec7c66e1f3e9f4bc03472be0275c515",
-    "docs/ai-project-starter.html": "729852f5c1570416ed8d379ad0d94dca1cd6aade4917603af2196c1865f8e198",
+    "docs/ai-project-starter-en.html": "130446e3f39fa048f1a9a813461208a2d6c97bcb397102a7357985860a61b509",
+    "docs/ai-project-starter.html": "339f37c12916b95054a176451dec52c91b9fe76391fb3278828e22e87cfe13a9",
     "github/ISSUE_TEMPLATE/bug_report.md": "ef2c74b1e90f05e92bab520fc964e7ac01d77a70f9abbd2423e6b161f7e01181",
     "github/ISSUE_TEMPLATE/chore.md": "ab4abe789812347c5198e31eab5ade67294e3cc1d2941505964ddab9d92edd28",
     "github/ISSUE_TEMPLATE/config.yml": "e71bea835ed1158881306294d96968f125b0b0c5eff66cd94df559336bd0b210",
@@ -80,7 +77,7 @@
     "project/roadmap/FEATURE_TEMPLATE/frontend.md": "f718909ee960c54200b59b805db16c2feeef350872ed2e5812666c4a04b18e5a",
     "project/roadmap/FEATURE_TEMPLATE/verify.md": "09502117e0549133520bbb2ea49496fb752c23ecbadb9f1c5054a0a27bc0407e",
     "project/roadmap/INDEX.md": "5904a5d0ba4b8fdc3c7f932bbc23b35711e833ca9f4f5620bc39420b4cf809ea",
-    "scripts/ai-project.mjs": "a98e8fa3dd6483674bdbecf5233bc9b0a6ff32afa5468b545aa1f2090ee5c6a6",
+    "scripts/ai-project.mjs": "a6dd012dc7011f48fbbf1965ed06fe5e9560a13554affea557a7afcbeafe429b",
     "scripts/validate-starter.mjs": "26c3c5d27d2046f991495aa89a64efd7c7e76637b10a6f4ed5bb7de26ae8975a",
     "scripts/validate-starter.sh": "fe20cc751e808c7353fbf654a35a15baf64600c88d48f62960a404aa6d8598ad",
     "skills/backend/SKILL.md": "2242653b5ef15468a34034bddc08a57950e5e60a414f68252cdcc3a0e8e57597",
