@@ -457,7 +457,7 @@
             <code>starter.json</code> definisce <code>canonicalRoot</code>
             <code>.ai-project</code>, <code>runtimeRoot</code>
             <code>.ai-project/runtime</code>, <code>localRoot</code>
-            <code>.ai-project/local</code>, 15 skill, 15 command wrapper,
+            <code>.ai-project/local</code>, 16 skill, 16 command wrapper,
             memory tag e roadmap layer.
           </p>
         </section>
@@ -690,6 +690,12 @@ bash scripts/validate-starter.sh</code></pre>
                 <td>Commit e push dopo diff review e conferma.</td>
                 <td>Solo git status, diff e branch.</td>
                 <td><code>/push</code></td>
+              </tr>
+              <tr>
+                <td><code>refactor</code></td>
+                <td>Analizzare file, funzione, modulo o topic e produrre piano refactor/ottimizzazione read-only.</td>
+                <td>Memory index, shard <code>always</code>, shard scope rilevanti.</td>
+                <td><code>/refactor</code></td>
               </tr>
               <tr>
                 <td><code>schema</code></td>
