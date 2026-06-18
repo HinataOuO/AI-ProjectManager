@@ -16,6 +16,7 @@
     "next-task",
     "project-discovery",
     "push",
+    "refactor",
     "schema",
     "session-status",
     "task-status"
@@ -33,6 +34,7 @@
     "next-task",
     "project-discovery",
     "push",
+    "refactor",
     "schema",
     "session-status",
     "task-status"

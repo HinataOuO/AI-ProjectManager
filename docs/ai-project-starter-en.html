@@ -406,7 +406,7 @@
             <code>starter.json</code> defines <code>.ai-project</code> as the
             canonical root, <code>.ai-project/runtime</code> as update-managed
             package root, <code>.ai-project/local</code> as project-local root,
-            plus 15 skills, 15 Claude command wrappers, memory tags, and
+            plus 16 skills, 16 Claude command wrappers, memory tags, and
             roadmap layers.
           </p>
         </section>
@@ -461,6 +461,25 @@ git commit -m "chore: install AI project manager"</code></pre>
 node .ai-project/runtime/scripts/ai-project.mjs status
 node .ai-project/runtime/scripts/ai-project.mjs sync-discovery
 bash scripts/validate-starter.sh</code></pre>
+
+          <h3>Update installed project and agents</h3>
+          <p>
+            <code>update</code> downloads/replaces
+            <code>.ai-project/runtime/</code> from the configured source and
+            updates <code>.ai-project.lock.json</code>. It never overwrites
+            <code>.ai-project/local/</code>.
+          </p>
+          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update --version main
+node .ai-project/runtime/scripts/ai-project.mjs sync-discovery --force</code></pre>
+          <p>
+            <code>sync-discovery</code> does not download updates. It
+            regenerates <code>AGENTS.md</code>, <code>CLAUDE.md</code>,
+            <code>.agents/skills/</code>, and
+            <code>.claude/commands/</code> from the current local runtime. If
+            nothing changes, run <code>update --version main</code> first or
+            check the source/ref with <code>status</code>.
+          </p>
+          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs status</code></pre>
         </section>
 
         <section id="logic">
@@ -519,6 +538,7 @@ bash scripts/validate-starter.sh</code></pre>
               <tr><td><code>next-task</code></td><td>Find the next actionable roadmap task.</td><td>Roadmap index, current macro, one layer.</td><td><code>/next-task</code></td></tr>
               <tr><td><code>project-discovery</code></td><td>Map one project area with low token usage.</td><td>Project index, memory index, overlay, discovery/area shards.</td><td><code>/project-discovery</code></td></tr>
               <tr><td><code>push</code></td><td>Commit and push after diff review and confirmation.</td><td>Only git status, diff, and branch.</td><td><code>/push</code></td></tr>
+              <tr><td><code>refactor</code></td><td>Analyze a file, function, module, or topic and produce a read-only refactor/optimization plan.</td><td>Memory index, <code>always</code> shards, relevant scope shards.</td><td><code>/refactor</code></td></tr>
               <tr><td><code>schema</code></td><td>Schema-only data model changes.</td><td><code>migration</code> shards, DB/schema overlay.</td><td><code>/schema</code></td></tr>
               <tr><td><code>session-status</code></td><td>Show current session task progress.</td><td>Current agent task list.</td><td><code>/session-status</code></td></tr>
               <tr><td><code>task-status</code></td><td>Read-only roadmap status overview.</td><td>Roadmap index and active <code>wip</code> macros.</td><td><code>/task-status</code></td></tr>
@@ -651,7 +671,8 @@ depends: []
           </ul>
 
           <h3>Update</h3>
-          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update
+          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update --version main
+node .ai-project/runtime/scripts/ai-project.mjs sync-discovery --force
 git diff
 git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/runtime
 git commit -m "chore: update AI project manager"</code></pre>
