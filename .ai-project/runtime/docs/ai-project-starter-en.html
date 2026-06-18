@@ -461,6 +461,25 @@ git commit -m "chore: install AI project manager"</code></pre>
 node .ai-project/runtime/scripts/ai-project.mjs status
 node .ai-project/runtime/scripts/ai-project.mjs sync-discovery
 bash scripts/validate-starter.sh</code></pre>
+
+          <h3>Update installed project and agents</h3>
+          <p>
+            <code>update</code> downloads/replaces
+            <code>.ai-project/runtime/</code> from the configured source and
+            updates <code>.ai-project.lock.json</code>. It never overwrites
+            <code>.ai-project/local/</code>.
+          </p>
+          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update --version main
+node .ai-project/runtime/scripts/ai-project.mjs sync-discovery --force</code></pre>
+          <p>
+            <code>sync-discovery</code> does not download updates. It
+            regenerates <code>AGENTS.md</code>, <code>CLAUDE.md</code>,
+            <code>.agents/skills/</code>, and
+            <code>.claude/commands/</code> from the current local runtime. If
+            nothing changes, run <code>update --version main</code> first or
+            check the source/ref with <code>status</code>.
+          </p>
+          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs status</code></pre>
         </section>
 
         <section id="logic">
@@ -652,7 +671,8 @@ depends: []
           </ul>
 
           <h3>Update</h3>
-          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update
+          <pre><code>node .ai-project/runtime/scripts/ai-project.mjs update --version main
+node .ai-project/runtime/scripts/ai-project.mjs sync-discovery --force
 git diff
 git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/runtime
 git commit -m "chore: update AI project manager"</code></pre>

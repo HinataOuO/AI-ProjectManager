@@ -2,7 +2,19 @@
 
 Portable starter for Codex and Claude project agents: shared core rules, task skills, commands, project memory templates, roadmap templates, and GitHub issue templates.
 
-Detailed maintainer and runtime notes live in `SKILL_README.md`.
+## Documentation
+
+- Runtime docs IT: `.ai-project/runtime/docs/ai-project-starter.html`
+- Runtime docs EN: `.ai-project/runtime/docs/ai-project-starter-en.html`
+- Maintainer notes: `SKILL_README.md`
+
+## Quick Commands
+
+```bash
+node .ai-project/runtime/scripts/ai-project.mjs status
+node .ai-project/runtime/scripts/ai-project.mjs update --version main
+node .ai-project/runtime/scripts/ai-project.mjs sync-discovery --force
+```
 
 ## Install
 
@@ -25,27 +37,34 @@ git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/lo
 git commit -m "chore: install AI project manager"
 ```
 
-## Update
+## Update Another Project
+
+Run inside the target project:
 
 ```bash
-node .ai-project/runtime/scripts/ai-project.mjs update
-git diff
-git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/runtime
-git commit -m "chore: update AI project manager"
+node .ai-project/runtime/scripts/ai-project.mjs update --version main
+node .ai-project/runtime/scripts/ai-project.mjs sync-discovery --force
 ```
 
-`update` only replaces `.ai-project/runtime/`, refreshes discovery files, and rewrites `.ai-project.lock.json`. It never overwrites `.ai-project/local/`.
+Run from outside the target project:
 
-## Status
+```bash
+node /path/to/project/.ai-project/runtime/scripts/ai-project.mjs update --project /path/to/project --version main
+node /path/to/project/.ai-project/runtime/scripts/ai-project.mjs sync-discovery --project /path/to/project --force
+```
+
+`update` downloads/replaces `.ai-project/runtime/` from the configured source and rewrites `.ai-project.lock.json`. It never overwrites `.ai-project/local/`.
+
+## Sync Agents
+
+```bash
+node .ai-project/runtime/scripts/ai-project.mjs sync-discovery --force
+```
+
+`sync-discovery` does not download updates. It regenerates `AGENTS.md`, `CLAUDE.md`, `.agents/skills/`, and `.claude/commands/` from the current local runtime. If nothing changes, run `update --version main` first or check the source/ref with:
 
 ```bash
 node .ai-project/runtime/scripts/ai-project.mjs status
-```
-
-## Sync Discovery
-
-```bash
-node .ai-project/runtime/scripts/ai-project.mjs sync-discovery
 ```
 
 ## Validate
