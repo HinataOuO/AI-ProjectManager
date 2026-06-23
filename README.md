@@ -1,4 +1,4 @@
-# AI Project Starter
+# AI Project Manager
 
 Portable starter for Codex and Claude project agents: shared core rules, task skills, commands, project memory templates, roadmap templates, and GitHub issue templates.
 
