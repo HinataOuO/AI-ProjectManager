@@ -1,0 +1,253 @@
+AI PROJECT MANAGER PERSONAL USE LICENSE
+Version 1.0, June 24, 2026
+
+Copyright (c) 2026 Pietro Salvi. All rights reserved.
+
+IMPORTANT: THIS IS A PROPRIETARY, SOURCE-AVAILABLE LICENSE. IT IS NOT AN
+OPEN-SOURCE OR FREE-SOFTWARE LICENSE.
+
+By downloading, copying, installing, accessing, modifying, or using the
+Software, You agree to the terms of this License. If You do not agree, You
+must not use the Software and must delete all copies in Your possession or
+control.
+
+1. Definitions
+
+"Licensor" means Pietro Salvi.
+
+"Software" means the AI Project Manager software, source code, scripts,
+templates, documentation, configuration files, and other materials distributed
+with this License, including any updates supplied by the Licensor.
+
+"You" means one natural person who accepts this License. It does not include a
+company, partnership, association, government body, nonprofit organization,
+team, household, or any other group or legal entity.
+
+"Modification" means any change, adaptation, translation, arrangement,
+extension, derivative work, or other material based on or incorporating any
+part of the Software.
+
+"Personal Use" means use by You alone, on devices and accounts controlled by
+You, for private, educational, experimental, or individual professional
+purposes. Personal Use may generate income for You, provided that no copy of
+the Software or any Modification is transferred, made available, or used to
+provide access to the Software for any client, employer, colleague, team,
+organization, or other third party.
+
+"Output" means code, text, configuration, project files, or other material
+created by You with assistance from the Software, excluding any portion of the
+Software or a Modification embedded in, copied into, or required to use that
+material.
+
+2. Limited License Grant
+
+Subject to Your continuous compliance with this License, the Licensor grants
+You a limited, personal, worldwide, revocable, non-exclusive,
+non-transferable, and non-sublicensable license to:
+
+a. download and make a reasonable number of copies of the Software solely for
+   Your Personal Use;
+
+b. install and run the Software solely for Your Personal Use; and
+
+c. create and use Modifications solely for Your Personal Use, provided that
+   every Modification remains private and under Your exclusive control.
+
+No other rights are granted. All rights not expressly granted are reserved by
+the Licensor.
+
+3. Permitted Individual Professional Use
+
+You may use the Software internally to support work performed by You as an
+individual, including freelance or self-employed work. This permission does
+not allow:
+
+a. use by or on behalf of an employer, company, partnership, team, or other
+   organization;
+
+b. installation in, or transfer to, a repository, system, device, or account
+   accessible by a client, employer, colleague, team member, or other third
+   party;
+
+c. delivery of the Software or a Modification as part of client work; or
+
+d. operation of the Software as a managed service, hosted service, platform,
+   or shared internal tool.
+
+4. Restrictions
+
+Except with the Licensor's prior express written permission, You must not,
+directly or indirectly:
+
+a. publish, distribute, redistribute, share, provide, transmit, upload, mirror,
+   sublicense, rent, lease, lend, sell, resell, assign, transfer, donate, or
+   otherwise make available the Software or any Modification, in whole or in
+   part, whether for payment or free of charge;
+
+b. make the Software or any Modification available in a public repository,
+   package registry, download service, file-sharing service, marketplace,
+   product, service, dataset, model, or other public or third-party-accessible
+   location;
+
+c. permit any other person or entity to access, use, copy, install, modify, or
+   control the Software or any Modification;
+
+d. use the Software for the benefit of, under the control of, or as an internal
+   resource of any company, organization, team, employer, or client;
+
+e. sell, license, monetize, commercialize, or charge for access to the Software
+   or any Modification;
+
+f. remove, conceal, alter, or misrepresent any copyright, attribution,
+   proprietary-rights, or license notice included with the Software; or
+
+g. represent that the Software or any Modification is open source, freely
+   redistributable, endorsed by the Licensor, or owned by anyone other than
+   its lawful owner.
+
+Receiving source code through a public repository does not grant permission to
+redistribute, publish, sell, or otherwise exploit the Software beyond the
+rights expressly stated in this License.
+
+5. Output and Independent Works
+
+As between You and the Licensor, the Licensor claims no ownership of Output
+that does not contain, reproduce, incorporate, or distribute the Software or a
+Modification. You may use, modify, license, and distribute such Output,
+subject to applicable law and any third-party rights.
+
+This section does not convert the Software, installed runtime files, templates,
+documentation, or Modifications into unrestricted Output. Renaming, rearranging,
+translating, formatting, or combining the Software with other material does not
+remove the restrictions of this License.
+
+6. Copies and Notices
+
+Every permitted copy or Modification must retain this License and all
+copyright, attribution, and proprietary notices. Retaining those notices does
+not authorize redistribution.
+
+7. Third-Party Materials
+
+Third-party software or materials included with or used by the Software remain
+subject to their own license terms. This License applies only to rights owned
+or controlled by the Licensor and does not limit rights independently granted
+under a third-party license.
+
+8. Separate Written Permission
+
+The Licensor may grant commercial, organizational, redistribution, resale,
+hosting, sublicensing, or other rights under a separate written agreement.
+Requests may be sent to:
+
+hinataouo03@gmail.com
+
+Silence, failure to respond, acceptance of a contribution, or public
+availability of the Software does not constitute permission. Permission is
+valid only when expressly granted in writing by the Licensor and may be subject
+to additional conditions or fees.
+
+9. Contributions
+
+Unless the Licensor agrees otherwise in writing, submitting a contribution
+does not grant You any ownership interest in the Software or any right to
+redistribute it. You represent that You have the right to submit each
+contribution. No additional license to Your contribution is implied merely by
+submission or acceptance.
+
+10. Ownership
+
+The Software is licensed, not sold. The Licensor and applicable third-party
+owners retain all right, title, and interest in and to the Software, including
+all copyright and other intellectual-property rights. This License grants no
+right to use the Licensor's names, trade names, trademarks, service marks, or
+logos except as necessary for accurate identification of the Software.
+
+11. Term and Termination
+
+This License begins when You first download, copy, install, access, modify, or
+use the Software. It terminates automatically and immediately if You breach any
+term.
+
+Upon termination, You must stop using the Software and permanently delete or
+destroy all copies and Modifications in Your possession or control. Sections
+5, 7, 10, 12, 13, 14, 15, and 16 survive termination.
+
+The Licensor may offer reinstatement or a separate license in writing, but is
+not required to do so.
+
+12. Disclaimer of Warranty
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE IS PROVIDED
+"AS IS" AND "AS AVAILABLE," WITH ALL FAULTS AND WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND. THE LICENSOR DISCLAIMS ALL EXPRESS, IMPLIED, AND
+STATUTORY WARRANTIES, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, ACCURACY, SECURITY, RELIABILITY,
+AVAILABILITY, AND ERROR-FREE OPERATION.
+
+YOU ARE SOLELY RESPONSIBLE FOR EVALUATING, TESTING, BACKING UP, SECURING, AND
+USING THE SOFTWARE AND FOR ALL RESULTS PRODUCED THROUGH ITS USE.
+
+13. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSOR SHALL NOT BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE, OR
+CONSEQUENTIAL LOSS OR DAMAGE, INCLUDING LOSS OF DATA, PROFITS, REVENUE,
+BUSINESS, GOODWILL, OR USE, ARISING FROM OR RELATED TO THE SOFTWARE OR THIS
+LICENSE, UNDER ANY THEORY OF LIABILITY, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH LOSS OR DAMAGE.
+
+WHERE LIABILITY CANNOT LAWFULLY BE EXCLUDED, THE LICENSOR'S TOTAL AGGREGATE
+LIABILITY SHALL NOT EXCEED THE GREATER OF (A) THE AMOUNT YOU PAID DIRECTLY TO
+THE LICENSOR FOR THE SOFTWARE DURING THE TWELVE MONTHS BEFORE THE EVENT GIVING
+RISE TO LIABILITY OR (B) TEN EUROS (EUR 10).
+
+Nothing in this License excludes or limits liability that cannot be excluded
+or limited under applicable law.
+
+14. Indemnification
+
+To the maximum extent permitted by applicable law, You agree to defend,
+indemnify, and hold harmless the Licensor from claims, liabilities, damages,
+losses, and reasonable costs arising from Your breach of this License, unlawful
+use of the Software, or infringement of third-party rights.
+
+15. Governing Law
+
+This License is governed by the laws of Italy, excluding its conflict-of-law
+rules. Mandatory protections and jurisdiction rules that apply to You under
+applicable law remain unaffected.
+
+16. General Terms
+
+a. Entire Agreement. This License is the entire agreement concerning the
+   rights granted here and supersedes prior statements concerning those rights,
+   unless a separate written agreement signed or expressly issued by the
+   Licensor applies.
+
+b. Severability. If any provision is held invalid or unenforceable, it shall be
+   enforced to the maximum lawful extent, and the remaining provisions remain
+   effective.
+
+c. No Waiver. Failure to enforce any provision is not a waiver of that
+   provision or any other provision.
+
+d. Assignment. You may not assign or transfer this License or any rights under
+   it. Any attempted assignment or transfer is void.
+
+e. Headings. Headings are for convenience only and do not affect
+   interpretation.
+
+f. Language. The English version of this License controls. Any translation is
+   provided for convenience only.
+
+17. Hosting-Platform Terms
+
+If the Software is made available through GitHub or another hosting platform,
+that platform's terms may grant limited technical rights necessary to view,
+store, or fork repository content within the platform. Those platform-specific
+rights do not expand this License and do not authorize use, publication,
+distribution, sale, or exploitation of the Software outside the scope required
+by those terms.
+
+END OF LICENSE

@@ -90,3 +90,16 @@ find core skills commands/claude project/memory github/ISSUE_TEMPLATE \
 ```
 
 Target: stay under 3000 words.
+
+## License
+
+Copyright (c) 2026 Pietro Salvi. All rights reserved.
+
+AI Project Manager is proprietary source-available software licensed for
+personal use and individual professional use. Private modifications are
+permitted. Redistribution, publication, sharing, resale, organizational use,
+and providing the software or modified versions to third parties are prohibited
+without prior written permission.
+
+See [LICENSE](LICENSE) for complete terms. For commercial, organizational, or
+redistribution licensing, contact `hinataouo03@gmail.com`.
