@@ -20,8 +20,9 @@ Route user intent to one focused skill.
 
 ## procedure
 1. Match request to smallest skill.
-2. If task spans layers, state needed skills in order.
-3. Load only selected skill.
+2. If the user asks to plan a broad feature or split work into atomic tasks, select `feature-plan`.
+3. If task spans layers, state needed skills in order.
+4. Load only selected skill.
 
 ## done
 - Selected skill or clear no-skill fallback reported.
