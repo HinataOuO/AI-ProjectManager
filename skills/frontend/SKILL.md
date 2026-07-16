@@ -7,7 +7,7 @@ description: "Frontend tasks: pages, components, styles, client behavior, i18n U
 Implement UI changes consistent with project design.
 
 ## load
-- `.ai-project/local/project/memory/MEMORY_INDEX.md`
+- `.pi/ai-project/local/project/memory/MEMORY_INDEX.md`
 - shards tagged `frontend`
 - overlay only for app/component/i18n paths
 

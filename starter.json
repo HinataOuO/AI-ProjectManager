@@ -1,11 +1,10 @@
 {
-  "version": "2.0.0",
-  "canonicalRoot": ".ai-project",
-  "runtimeRoot": ".ai-project/runtime",
-  "localRoot": ".ai-project/local",
+  "version": "3.0.0",
+  "runtimeRoot": ".pi/ai-project/runtime",
+  "localRoot": ".pi/ai-project/local",
+  "skillsRoot": ".pi/skills",
   "skills": [
     "backend",
-    "close-task",
     "commands",
     "domain-feature",
     "feature-plan",
@@ -15,7 +14,6 @@
     "log-issue",
     "migration",
     "next-task",
-    "ponytail",
     "project-discovery",
     "push",
     "refactor",
@@ -23,55 +21,6 @@
     "session-status",
     "task-status"
   ],
-  "claudeCommands": [
-    "backend",
-    "close-task",
-    "commands",
-    "domain-feature",
-    "feature-plan",
-    "frontend",
-    "git-issue",
-    "i18n",
-    "log-issue",
-    "migration",
-    "next-task",
-    "ponytail",
-    "project-discovery",
-    "push",
-    "refactor",
-    "schema",
-    "session-status",
-    "task-status"
-  ],
-  "requiredFiles": [
-    "starter.json",
-    "README.md",
-    "SKILL_README.md",
-    "MIGRATION.md",
-    "CHECKS.md",
-    "scripts/ai-project.mjs",
-    "core/KERNEL.md",
-    "core/LOAD_ORDER.md",
-    "core/CONVENTIONS.md",
-    "project/PROJECT_INDEX.md",
-    "project/memory/MEMORY_INDEX.md",
-    "project/roadmap/INDEX.md",
-    "adapters/codex/AGENTS.md",
-    "adapters/claude/CLAUDE.md"
-  ],
-  "memoryTags": [
-    "always",
-    "backend",
-    "frontend",
-    "migration",
-    "discovery",
-    "domain",
-    "roadmap"
-  ],
-  "roadmapLayers": [
-    "database",
-    "backend",
-    "frontend",
-    "verify"
-  ]
+  "memoryTags": ["always", "backend", "frontend", "migration", "discovery", "domain", "roadmap"],
+  "roadmapLayers": ["database", "backend", "frontend", "verify"]
 }

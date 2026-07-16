@@ -7,7 +7,7 @@ description: "Backend tasks: server code, DB queries, API routes, auth, validati
 Implement backend changes with project patterns.
 
 ## load
-- `.ai-project/local/project/memory/MEMORY_INDEX.md`
+- `.pi/ai-project/local/project/memory/MEMORY_INDEX.md`
 - shards tagged `backend`
 - overlay only for source paths, DB/client, auth rules
 

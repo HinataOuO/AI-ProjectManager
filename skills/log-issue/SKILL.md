@@ -7,7 +7,7 @@ description: Create issue and propose memory shard; no implicit push.
 Persist reported problem in issue tracker and memory.
 
 ## load
-- `.ai-project/local/project/memory/MEMORY_INDEX.md`
+- `.pi/ai-project/local/project/memory/MEMORY_INDEX.md`
 - matching scope shard if exists
 - overlay for issue labels and repo settings
 

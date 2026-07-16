@@ -34,7 +34,7 @@ depends: []
 ```
 
 ## Memory Writes
-- Memory lives under `.ai-project/local/project/memory/`.
+- Memory lives under `.pi/ai-project/local/project/memory/`.
 - Keep existing frontmatter when editing shards.
 - Use existing shards when tags and scope match.
 - Create a new shard only when no existing shard fits.

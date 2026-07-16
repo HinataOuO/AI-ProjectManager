@@ -1,105 +1,42 @@
 # AI Project Manager
 
-Portable starter for Codex and Claude project agents: shared core rules, task skills, commands, project memory templates, roadmap templates, and GitHub issue templates.
+Pi package con skill portabili, runtime aggiornabile e stato locale separato.
 
-## Documentation
-
-- Runtime docs IT: `.ai-project/runtime/docs/ai-project-starter.html`
-- Runtime docs EN: `.ai-project/runtime/docs/ai-project-starter-en.html`
-- Maintainer notes: `SKILL_README.md`
-
-## Quick Commands
+## Installare il package Pi
 
 ```bash
-node .ai-project/runtime/scripts/ai-project.mjs status
-node .ai-project/runtime/scripts/ai-project.mjs update --version main
-node .ai-project/runtime/scripts/ai-project.mjs sync-discovery --force
+pi install -l /home/Hina/Projects/AI-ProjectManager
 ```
 
-## Install
+Pi richiede fiducia nel progetto prima di caricare skill locali/package. Le skill sono disponibili come `/skill:<nome>`.
 
-Fast install into the current repository:
+## Inizializzare un progetto
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HinataOuO/AI-ProjectManager/main/scripts/ai-project.mjs | node - install-here
+node /home/Hina/Projects/AI-ProjectManager/scripts/ai-project.mjs init --project /path/al/progetto
 ```
 
-Install from a local clone:
+Crea:
+
+- `.pi/ai-project/runtime/` — core, skill e script aggiornabili;
+- `.pi/ai-project/local/` — roadmap, memoria, overlay persistenti;
+- `.pi/skills/` — copia delle skill auto-scoperta da Pi;
+- `AGENTS.md` dal template, senza sovrascrivere un file diverso salvo `--force`.
+
+## Lifecycle
 
 ```bash
-node /path/to/AI-ProjectStarter/scripts/ai-project.mjs install <git-url-or-local-path> --version v2.0.0
+node .pi/ai-project/runtime/scripts/ai-project.mjs status
+node .pi/ai-project/runtime/scripts/ai-project.mjs update
 ```
 
-Commit installed files:
+`update` blocca se il runtime installato ha drift; usare `--force` solo per scartare tali modifiche. Non modifica `.pi/ai-project/local/`.
+
+## Verifica
 
 ```bash
-git add AGENTS.md CLAUDE.md .agents .claude .ai-project.lock.json .ai-project/local
-git commit -m "chore: install AI project manager"
+npm run validate
+npm test
 ```
 
-## Update Another Project
-
-Run inside the target project:
-
-```bash
-node .ai-project/runtime/scripts/ai-project.mjs update --version main
-node .ai-project/runtime/scripts/ai-project.mjs sync-discovery --force
-```
-
-Run from outside the target project:
-
-```bash
-node /path/to/project/.ai-project/runtime/scripts/ai-project.mjs update --project /path/to/project --version main
-node /path/to/project/.ai-project/runtime/scripts/ai-project.mjs sync-discovery --project /path/to/project --force
-```
-
-`update` downloads/replaces `.ai-project/runtime/` from the configured source and rewrites `.ai-project.lock.json`. It never overwrites `.ai-project/local/`.
-
-## Sync Agents
-
-```bash
-node .ai-project/runtime/scripts/ai-project.mjs sync-discovery --force
-```
-
-`sync-discovery` does not download updates. It regenerates `AGENTS.md`, `CLAUDE.md`, `.agents/skills/`, and `.claude/commands/` from the current local runtime. If nothing changes, run `update --version main` first or check the source/ref with:
-
-```bash
-node .ai-project/runtime/scripts/ai-project.mjs status
-```
-
-## Validate
-
-From this repository:
-
-```bash
-bash scripts/validate-starter.sh
-```
-
-From a parent directory:
-
-```bash
-bash AI-ProjectStarter/scripts/validate-starter.sh
-```
-
-## Token Check
-
-```bash
-find core skills commands/claude project/memory github/ISSUE_TEMPLATE \
-  -type f \( -name '*.md' -o -name '*.yml' -o -name '*.yaml' \) -print0 |
-  xargs -0 wc -w
-```
-
-Target: stay under 3000 words.
-
-## License
-
-Copyright (c) 2026 Pietro Salvi. All rights reserved.
-
-AI Project Manager is proprietary source-available software licensed for
-personal use and individual professional use. Private modifications are
-permitted. Redistribution, publication, sharing, resale, organizational use,
-and providing the software or modified versions to third parties are prohibited
-without prior written permission.
-
-See [LICENSE](LICENSE) for complete terms. For commercial, organizational, or
-redistribution licensing, contact `hinataouo03@gmail.com`.
+Migrazione e check: [`docs/MIGRATION.md`](docs/MIGRATION.md), [`docs/CHECKS.md`](docs/CHECKS.md).

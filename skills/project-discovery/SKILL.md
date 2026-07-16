@@ -7,8 +7,8 @@ description: User-guided, low-token project discovery by one technical area at a
 Build reusable project understanding without scanning large repos.
 
 ## load
-- `.ai-project/local/project/PROJECT_INDEX.md`
-- `.ai-project/local/project/memory/MEMORY_INDEX.md`
+- `.pi/ai-project/local/project/PROJECT_INDEX.md`
+- `.pi/ai-project/local/project/memory/MEMORY_INDEX.md`
 - overlay when present
 - shards tagged `discovery` or current area only
 

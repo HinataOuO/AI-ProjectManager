@@ -7,7 +7,7 @@ description: Find next roadmap task with lazy layer loading.
 Identify next actionable roadmap task.
 
 ## load
-- `.ai-project/local/project/roadmap/INDEX.md`
+- `.pi/ai-project/local/project/roadmap/INDEX.md`
 - current feature `MACRO.md`
 - one matching layer file
 

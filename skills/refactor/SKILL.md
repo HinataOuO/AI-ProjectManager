@@ -7,7 +7,7 @@ description: Analyze a file, function, component, module, feature, or topic and 
 Analyze a code target and produce a plan-first refactor report that improves simplicity, performance, organization, duplication, and project consistency.
 
 ## load
-- `.ai-project/local/project/memory/MEMORY_INDEX.md`
+- `.pi/ai-project/local/project/memory/MEMORY_INDEX.md`
 - shards tagged `always`
 - shards tagged `backend`, `frontend`, or `migration` when the target matches that scope
 - overlay only for source paths, test commands, framework, DB/client, or domain boundaries needed to interpret the target

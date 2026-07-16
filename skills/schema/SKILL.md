@@ -7,7 +7,7 @@ description: Schema-only DB model changes.
 Change data model only.
 
 ## load
-- `.ai-project/local/project/memory/MEMORY_INDEX.md`
+- `.pi/ai-project/local/project/memory/MEMORY_INDEX.md`
 - shards tagged `migration`
 - overlay for DB provider and schema path
 
