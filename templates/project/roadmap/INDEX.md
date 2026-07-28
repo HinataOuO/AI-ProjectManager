@@ -7,4 +7,4 @@
 - `next-task` reads this file first.
 - Only one active `wip` feature unless project overlay says otherwise.
 - Completed historical detail belongs in memory, not this index.
-- Broad feature plans live under `project/roadmap/plans/R1/` in files like `R1.1.md`.
+- Broad feature plans live at the project root under `plans/R{n}/` in files like `R1/R1.1.md`.

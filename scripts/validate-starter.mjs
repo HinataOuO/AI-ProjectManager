@@ -7,7 +7,7 @@ const manifest = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
 const starter = JSON.parse(readFileSync(join(root, "starter.json"), "utf8"));
 const failures = [];
 const requiredHeadings = ["purpose", "load", "scope", "deny", "procedure", "done"];
-const piOnlyRoots = ["core", "skills", "templates/AGENTS.md", "templates/project"];
+const piOnlyRoots = ["core", "skills", "templates/AGENTS.md", "templates/project", "templates/plans"];
 
 function fail(message) { failures.push(message); }
 function walk(path) {
@@ -20,7 +20,7 @@ function walk(path) {
 
 if (!manifest.keywords?.includes("pi-package")) fail("package.json missing pi-package keyword");
 if (JSON.stringify(manifest.pi?.skills) !== JSON.stringify(["./skills"])) fail("package.json pi.skills must be [./skills]");
-for (const path of ["core", "skills", "starter.json", "templates/AGENTS.md", "templates/project", "scripts/ai-project.mjs", "docs", "tests"]) {
+for (const path of ["core", "skills", "starter.json", "templates/AGENTS.md", "templates/project", "templates/plans", "scripts/ai-project.mjs", "docs", "tests"]) {
   if (!existsSync(join(root, path))) fail(`missing ${path}`);
 }
 if (starter.runtimeRoot !== ".pi/ai-project/runtime") fail("starter.json runtimeRoot invalid");

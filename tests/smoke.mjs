@@ -20,16 +20,21 @@ try {
     ".pi/ai-project/runtime/core/KERNEL.md",
     ".pi/ai-project/local/project/PROJECT_INDEX.md",
     ".pi/skills/backend/SKILL.md",
+    "plans/R1/R1.1.md",
     "AGENTS.md",
   ]) assert.ok(existsSync(join(project, path)), `missing ${path}`);
 
   const local = join(project, ".pi/ai-project/local/project/PROJECT_INDEX.md");
   writeFileSync(local, `${readFileSync(local, "utf8")}\n<!-- local state -->\n`);
   const before = readFileSync(local, "utf8");
+  const plan = join(project, "plans/R1/R1.1.md");
+  writeFileSync(plan, `${readFileSync(plan, "utf8")}\n<!-- project plan -->\n`);
+  const beforePlan = readFileSync(plan, "utf8");
   const installed = join(project, ".pi/ai-project/runtime/scripts/ai-project.mjs");
   const update = spawnSync(process.execPath, [installed, "update", "--project", project], { encoding: "utf8" });
   assert.equal(update.status, 0, update.stderr || update.stdout);
   assert.equal(readFileSync(local, "utf8"), before);
+  assert.equal(readFileSync(plan, "utf8"), beforePlan);
   const status = spawnSync(process.execPath, [installed, "status", "--project", project], { encoding: "utf8" });
   assert.equal(status.status, 0, status.stderr || status.stdout);
   console.log("OK installer smoke test");

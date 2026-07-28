@@ -81,7 +81,7 @@ function sourcePath(values) {
 }
 
 function assertSource(source) {
-  for (const file of ["package.json", "templates/AGENTS.md", "templates/project", ...RUNTIME_FILES]) {
+  for (const file of ["package.json", "templates/AGENTS.md", "templates/project", "templates/plans", ...RUNTIME_FILES]) {
     if (!existsSync(join(source, file))) throw new Error(`Invalid AI Project Manager source: ${source}`);
   }
 }
@@ -123,6 +123,13 @@ function seedLocal(project, source) {
   return true;
 }
 
+function seedPlans(project, source) {
+  const target = join(project, "plans");
+  if (existsSync(target)) return false;
+  cpSync(join(source, "templates/plans"), target, { recursive: true });
+  return true;
+}
+
 function syncAgents(project, source, force) {
   const target = join(project, "AGENTS.md");
   const template = join(source, "templates/AGENTS.md");
@@ -155,10 +162,11 @@ function init(values) {
   syncRuntime(project, source);
   syncSkills(project, source);
   const seeded = seedLocal(project, source);
+  const plans = seedPlans(project, source);
   const agents = syncAgents(project, source, values.force);
   writeJson(pathFor(project, LOCK_FILE), makeLock(source, project));
   console.log(`initialized ${project}`);
-  console.log(`local: ${seeded ? "seeded" : "kept"}; AGENTS.md: ${agents ? "written" : "kept"}`);
+  console.log(`local: ${seeded ? "seeded" : "kept"}; plans: ${plans ? "seeded" : "kept"}; AGENTS.md: ${agents ? "written" : "kept"}`);
 }
 
 function update(values) {
